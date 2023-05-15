@@ -88,6 +88,11 @@ public class PhongServiceImpl implements PhongService{
         return UserResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
+                .username(user.getUsername())
+                .chucVu(user.getChucVu())
+                .image(user.getImage())
+                .phone(user.getPhone())
+                .email(user.getEmail())
                 .roles(user.getRoles())
                 .build();
     }

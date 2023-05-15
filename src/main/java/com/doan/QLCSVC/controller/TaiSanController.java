@@ -61,6 +61,11 @@ public class TaiSanController {
                 .build();
         return ResponseEntity.ok().body(apiResponse);
     }
+    @PostMapping("dichuyen")
+    public ResponseEntity<Boolean> diChuyenTS(@RequestBody TaiSanRequest taiSanRequest){
+        return ResponseEntity.ok().body(taiSanService.diChuyenTS(taiSanRequest));
+    }
+
 
 
 

@@ -82,6 +82,18 @@ public class TaiSanServiceImpl implements TaiSanService{
         return false;
     }
 
+    @Override
+    public Boolean diChuyenTS(TaiSanRequest taiSanRequest) {
+        if(taiSanRepo.existsById(taiSanRequest.getMaTS())&& phongRepo.existsById(taiSanRequest.getMaPhongDC())){
+            TaiSan taiSan=taiSanRepo.findById(taiSanRequest.getMaTS()).orElseThrow();
+            Phong phong=phongRepo.findById(taiSanRequest.getMaPhongDC()).orElseThrow();
+            taiSan.setPhong(phong);
+            taiSanRepo.save(taiSan);
+            return true;
+        }
+        return false;
+    }
+
     public TaiSanResponse mapToTaiSanResponse(TaiSan taiSan){
         return TaiSanResponse.builder()
                 .tenTS(taiSan.getTenTS())

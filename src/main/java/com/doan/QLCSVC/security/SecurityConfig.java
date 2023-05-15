@@ -68,6 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/QLCSVC/api/trangthai/**").permitAll();
         http.authorizeRequests().antMatchers("/QLCSVC/api/taisan/**").permitAll();
         http.authorizeRequests().antMatchers("/QLCSVC/api/danhmucTS/**").permitAll();
+        http.authorizeRequests().antMatchers("/QLCSVC/api/ttdc/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -58,7 +58,7 @@ public class TaiSan {
                 ", congXuat='" + congXuat + '\'' +
                 ", danhMucTaiSan=" + danhMucTaiSan +
                 ", trangThai=" + trangThai +
-                ", phong=" + phong +
+
                 '}';
     }
 }

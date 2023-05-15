@@ -16,4 +16,6 @@ public interface TaiSanService {
     Boolean deleteTaiSan(Long id);
     Boolean updateTaiSan(TaiSanRequest taiSanRequest);
 
+    Boolean diChuyenTS(TaiSanRequest taiSanRequest);
+
 }

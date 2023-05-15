@@ -15,6 +15,7 @@ public interface UserService {
     Role saveRole(Role role);
     void addRoleToUser(String username, String roleName);
     boolean addPhongToUser(Long userId,Long maPhong);
+    boolean removePhongFromUser(Long userId,Long maPhong);
     UserResponse getUser(String username);
     Page<UserResponse> getUsers(UserRequest userRequest);
     Boolean updateUser(User user);

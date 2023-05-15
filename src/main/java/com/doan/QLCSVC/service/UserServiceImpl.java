@@ -67,6 +67,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public boolean removePhongFromUser(Long userId, Long maPhong) {
+        if(userRepo.existsById(userId)&&phongRepo.existsById(maPhong)){
+            Phong phong=phongRepo.findById(maPhong).orElseThrow();
+            User user=userRepo.findById(userId).orElseThrow();
+            user.getPhongs().remove(phong);
+            userRepo.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public UserResponse getUser(String username) {
         User user=userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found."));
         return mapToUserResponse(user);

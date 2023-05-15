@@ -74,6 +74,10 @@ public class UserController {
     public ResponseEntity<Boolean> addPhongToUser(@RequestBody UserRequest userRequest){
         return ResponseEntity.ok().body(userService.addPhongToUser(userRequest.getUserID(), userRequest.getMaPhong()));
     }
+    @PostMapping("/removePhongFromUser")
+    public ResponseEntity<Boolean> removePhongFromUser(@RequestBody UserRequest userRequest){
+        return ResponseEntity.ok().body(userService.removePhongFromUser(userRequest.getUserID(), userRequest.getMaPhong()));
+    }
     @GetMapping("/roles")
     public ResponseEntity<List<Role>> getRoles(){
 

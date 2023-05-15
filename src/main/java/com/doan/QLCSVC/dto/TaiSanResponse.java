@@ -33,5 +33,6 @@ public class TaiSanResponse {
     private TrangThai trangThai;
 
     private PhongResponse phong;
+    private Boolean checked=false;
 
 }

@@ -16,6 +16,7 @@ public class TaiSanRequest {
     private Integer size;
     private Long maTS;
     private String tenTS;
+    private Long maPhongDC;
 
     private String namSanXuat;
     private String hangSanXuat;
