@@ -11,6 +11,7 @@ public interface TaiSanService {
     Page<TaiSanResponse> getAllTS(Integer page, Integer size);
 
     Page<TaiSanResponse> getTSByPhong(TaiSanRequest taiSanRequest);
+    Page<TaiSanResponse> getTSByPhongAndTT(TaiSanRequest taiSanRequest);
     TaiSanResponse saveTS(TaiSanRequest taiSanRequest);
     TaiSanResponse getTSById(Long id);
     Boolean deleteTaiSan(Long id);

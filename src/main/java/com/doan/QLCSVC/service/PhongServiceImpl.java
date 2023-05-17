@@ -22,9 +22,9 @@ public class PhongServiceImpl implements PhongService{
     private final PhongRepository phongRepo;
     private final UserRepository userRepo;
     @Override
-    public PhongResponse addPhong(PhongRequest phongRequest) {
+    public Boolean addPhong(PhongRequest phongRequest) {
         Phong phong=mapToPhong(phongRequest);
-        return mapToPhongResponse(phongRepo.save(phong));
+        return true;
     }
 
     @Override

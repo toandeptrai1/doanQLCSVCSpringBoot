@@ -5,8 +5,10 @@ import com.doan.QLCSVC.dto.TaiSanRequest;
 import com.doan.QLCSVC.dto.TaiSanResponse;
 import com.doan.QLCSVC.model.Phong;
 import com.doan.QLCSVC.model.TaiSan;
+import com.doan.QLCSVC.model.TrangThai;
 import com.doan.QLCSVC.repo.PhongRepository;
 import com.doan.QLCSVC.repo.TaiSanRepository;
+import com.doan.QLCSVC.repo.TrangThaiRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,8 @@ public class TaiSanServiceImpl implements TaiSanService{
     private final QRCodeService qrCodeService;
     private final PhongRepository phongRepo;
 
+    private final TrangThaiRepository trangThaiRepo;
+
 
     @Override
     public Page<TaiSanResponse> getAllTS(Integer page, Integer size) {
@@ -37,9 +41,21 @@ public class TaiSanServiceImpl implements TaiSanService{
         Pageable pageable=PageRequest.of(taiSanRequest.getPage(), taiSanRequest.getSize());
         Phong phong=phongRepo.findById(taiSanRequest.getMaPhong()).orElseThrow();
         Page<TaiSan> pageTaiSan=taiSanRepo.findByPhong(phong,pageable);
-        Page<TaiSanResponse> pageTSResponse=pageTaiSan.map(taisan->mapToTaiSanResponse(taisan));
+        Page<TaiSanResponse> pageTSResponse=pageTaiSan.map(this::mapToTaiSanResponse);
 
         return pageTSResponse;
+    }
+
+    @Override
+    public Page<TaiSanResponse> getTSByPhongAndTT(TaiSanRequest taiSanRequest) {
+        Pageable pageable=PageRequest.of(taiSanRequest.getPage(), taiSanRequest.getSize());
+        Phong phong=phongRepo.findById(taiSanRequest.getMaPhong()).orElseThrow();
+        TrangThai trangThai=trangThaiRepo.findById(taiSanRequest.getMaTT()).orElseThrow();
+        Page<TaiSan> pageTaiSan=taiSanRepo.findByPhongAndTrangThai(phong,trangThai,pageable);
+        Page<TaiSanResponse> pageTSResponse=pageTaiSan.map(this::mapToTaiSanResponse);
+
+        return pageTSResponse;
+
     }
 
     @Override
@@ -110,6 +126,7 @@ public class TaiSanServiceImpl implements TaiSanService{
                 .viSuLy(taiSan.getViSuLy())
                 .khac(taiSan.getKhac())
                 .boNho(taiSan.getBoNho())
+                .maPhong(taiSan.getPhong().getMaPhong())
                 .phong(mapToPhongresponse(taiSan.getPhong()))
                 .build();
     }

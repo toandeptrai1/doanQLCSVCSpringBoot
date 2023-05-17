@@ -31,7 +31,7 @@ public class PhongController {
     private final DanhMucPhongServiceImpl danhMucPhongService;
 
     @PostMapping("/add")
-    public ResponseEntity<PhongResponse> addPhong(@RequestBody PhongRequest phongRequest){
+    public ResponseEntity<Boolean> addPhong(@RequestBody PhongRequest phongRequest){
 
         return  ResponseEntity.ok().body(phongService.addPhong(phongRequest));
 

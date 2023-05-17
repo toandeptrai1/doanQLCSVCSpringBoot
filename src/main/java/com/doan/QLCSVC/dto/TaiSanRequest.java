@@ -30,6 +30,8 @@ public class TaiSanRequest {
     private String cacXuLyDoHoa;
     private String khac;
     private String congXuat;
+
+    private Long maTT;
     private DanhMucTaiSan danhMucTaiSan;
     private TrangThai trangThai;
     private Long maPhong;

@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface PhongService {
-    PhongResponse addPhong(PhongRequest phongRequest);
+    Boolean addPhong(PhongRequest phongRequest);
     Page<PhongResponse> getPhongs(PhongRequest phongRequest);
     PhongResponse getPhong(Long id);
     List<PhongResponse> getAllPhong();

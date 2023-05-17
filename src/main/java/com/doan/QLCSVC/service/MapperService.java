@@ -6,9 +6,11 @@ import com.doan.QLCSVC.dto.UserResponse;
 import com.doan.QLCSVC.model.Phong;
 import com.doan.QLCSVC.model.TaiSan;
 import com.doan.QLCSVC.model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MapperService {
-    private UserResponse mapToUserResponse(User user){
+    public UserResponse mapToUserResponse(User user){
         return UserResponse.builder()
                 .id(user.getId())
                 .name(user.getName())
@@ -22,6 +24,7 @@ public class MapperService {
     }
     public PhongResponse mapToPhongResponse(Phong phong){
         return PhongResponse.builder()
+                .image(phong.getImage())
                 .tenPhong(phong.getTenPhong())
                 .maPhong(phong.getMaPhong())
                 .chieuDai(phong.getChieuDai())

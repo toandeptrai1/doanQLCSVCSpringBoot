@@ -32,7 +32,7 @@ public class ThongTinDCRequest {
     private Set<TaiSan> taiSans;
 
     private User user;
-    private Long page;
-    private Long size;
+    private Integer page=0;
+    private Integer size=4;
 
 }

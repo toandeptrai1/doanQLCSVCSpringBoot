@@ -1,5 +1,6 @@
 package com.doan.QLCSVC.service;
 
+import com.doan.QLCSVC.dto.TaiSanResponse;
 import com.doan.QLCSVC.dto.ThongTinDCRequest;
 import com.doan.QLCSVC.dto.ThongTinDCResponse;
 import com.doan.QLCSVC.model.Phong;
@@ -10,9 +11,13 @@ import com.doan.QLCSVC.repo.TaiSanRepository;
 import com.doan.QLCSVC.repo.ThongTinDiChuyenRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +26,8 @@ public class ThongTinDCServiceImpl implements ThongTinDCService{
     private final ThongTinDiChuyenRepo thongTinDiChuyenRepo;
     private final TaiSanRepository taiSanRepo;
     private final PhongRepository phongRepo;
+    private final MapperService mapperService;
+
     @Override
     public Boolean addTTDC(ThongTinDCRequest thongTinDCRequest) {
         thongTinDiChuyenRepo.save(mapToTTDC(thongTinDCRequest));
@@ -39,12 +46,31 @@ public class ThongTinDCServiceImpl implements ThongTinDCService{
 
     @Override
     public Page<ThongTinDCResponse> getAllTTDC(ThongTinDCRequest thongTinDCRequest) {
-        return null;
+        Pageable pageable= PageRequest.of(thongTinDCRequest.getPage(),thongTinDCRequest.getSize());
+        Page<ThongTinDiChuyen> page=thongTinDiChuyenRepo.findAll(pageable);
+        Page<ThongTinDCResponse> pageTTDC=page.map(ttdc->mapToTTDCResponse(ttdc));
+        return pageTTDC;
+    }
+    public ThongTinDCResponse mapToTTDCResponse(ThongTinDiChuyen thongTinDiChuyen){
+        return ThongTinDCResponse.builder()
+                .maTTDC(thongTinDiChuyen.getMaTTDC())
+                .tenTTDC(thongTinDiChuyen.getTenTTDC())
+                .createdDate(thongTinDiChuyen.getCreatedDate())
+                .taiSans( thongTinDiChuyen.getTaiSans().stream().map(taiSan -> mapperService.mapToTaiSanResponse(taiSan)).collect(Collectors.toSet()))
+                .user(mapperService.mapToUserResponse(thongTinDiChuyen.getUser()))
+                .maPhongDC(thongTinDiChuyen.getMaPhongDC())
+                .tenPhongDC(thongTinDiChuyen.getTenPhongDC())
+                .maPhong(thongTinDiChuyen.getMaPhong())
+                .moTa(thongTinDiChuyen.getMoTa())
+                .tenPhong(thongTinDiChuyen.getTenPhong())
+                .build();
+
     }
 
     @Override
     public ThongTinDCResponse getTTDC(Long maTTDC) {
-        return null;
+        ThongTinDiChuyen thongTinDiChuyen=thongTinDiChuyenRepo.findById(maTTDC).orElseThrow();
+        return mapToTTDCResponse(thongTinDiChuyen);
     }
     public ThongTinDiChuyen mapToTTDC(ThongTinDCRequest thongTinDCRequest){
         Phong phong=phongRepo.findById(thongTinDCRequest.getMaPhong()).orElseThrow();

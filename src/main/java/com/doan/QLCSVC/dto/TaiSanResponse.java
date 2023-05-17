@@ -35,4 +35,6 @@ public class TaiSanResponse {
     private PhongResponse phong;
     private Boolean checked=false;
 
+    private Long maPhong;
+
 }
