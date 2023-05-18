@@ -6,7 +6,7 @@ import com.doan.QLCSVC.model.ThongTinDiChuyen;
 import org.springframework.data.domain.Page;
 
 public interface ThongTinDCService {
-    Boolean addTTDC(ThongTinDCRequest thongTinDCRequest);
+    ThongTinDCResponse addTTDC(ThongTinDCRequest thongTinDCRequest);
     Boolean deleteTTDC(Long maTTDC);
     Boolean updateTTDC(ThongTinDCRequest thongTinDCRequest);
 

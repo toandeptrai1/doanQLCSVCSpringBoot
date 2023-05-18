@@ -5,7 +5,7 @@ import com.doan.QLCSVC.dto.ThongTinSuaResponse;
 import org.springframework.data.domain.Page;
 
 public interface ThongTinSuaService {
-    Boolean addTTS(ThongTinSuaRequest thongTinSuaRequest);
+    ThongTinSuaResponse addTTS(ThongTinSuaRequest thongTinSuaRequest);
     Page<ThongTinSuaResponse> getAllTTS(ThongTinSuaRequest thongTinSuaRequest);
     ThongTinSuaResponse getTTS(Long maTTS);
 

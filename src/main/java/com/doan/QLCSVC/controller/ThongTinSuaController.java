@@ -22,7 +22,7 @@ public class ThongTinSuaController {
     private final ThongTinSuaServiceImpl thongTinSuaService;
 
     @PostMapping("add")
-    public ResponseEntity<Boolean> addTTDC(@RequestBody ThongTinSuaRequest thongTinSuaRequest){
+    public ResponseEntity<ThongTinSuaResponse> addTTDC(@RequestBody ThongTinSuaRequest thongTinSuaRequest){
 
         return ResponseEntity.ok().body(thongTinSuaService.addTTS(thongTinSuaRequest));
 

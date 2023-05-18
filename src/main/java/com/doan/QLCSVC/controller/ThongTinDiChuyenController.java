@@ -21,7 +21,7 @@ public class ThongTinDiChuyenController {
     private final ThongTinDCServiceImpl thongTinDCService;
 
     @PostMapping("add")
-    public ResponseEntity<Boolean> addTTDC(@RequestBody ThongTinDCRequest thongTinDCRequest){
+    public ResponseEntity<ThongTinDCResponse> addTTDC(@RequestBody ThongTinDCRequest thongTinDCRequest){
 
         return ResponseEntity.ok().body(thongTinDCService.addTTDC(thongTinDCRequest));
 

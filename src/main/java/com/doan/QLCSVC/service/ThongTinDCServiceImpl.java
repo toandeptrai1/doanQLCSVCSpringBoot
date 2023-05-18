@@ -1,10 +1,8 @@
 package com.doan.QLCSVC.service;
 
-import com.doan.QLCSVC.dto.TaiSanResponse;
 import com.doan.QLCSVC.dto.ThongTinDCRequest;
 import com.doan.QLCSVC.dto.ThongTinDCResponse;
 import com.doan.QLCSVC.model.Phong;
-import com.doan.QLCSVC.model.TaiSan;
 import com.doan.QLCSVC.model.ThongTinDiChuyen;
 import com.doan.QLCSVC.repo.PhongRepository;
 import com.doan.QLCSVC.repo.TaiSanRepository;
@@ -16,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,9 +26,9 @@ public class ThongTinDCServiceImpl implements ThongTinDCService{
     private final MapperService mapperService;
 
     @Override
-    public Boolean addTTDC(ThongTinDCRequest thongTinDCRequest) {
-        thongTinDiChuyenRepo.save(mapToTTDC(thongTinDCRequest));
-        return true;
+    public ThongTinDCResponse addTTDC(ThongTinDCRequest thongTinDCRequest) {
+        ThongTinDiChuyen thongTinDiChuyen= thongTinDiChuyenRepo.save(mapToTTDC(thongTinDCRequest));
+        return mapToTTDCResponse(thongTinDiChuyen);
     }
 
     @Override

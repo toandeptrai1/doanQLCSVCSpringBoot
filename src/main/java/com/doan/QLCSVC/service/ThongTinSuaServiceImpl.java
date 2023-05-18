@@ -20,9 +20,9 @@ public class ThongTinSuaServiceImpl implements ThongTinSuaService{
     private final ThongTinSuaRepo thongTinSuaRepo;
     private final MapperService mapperService;
     @Override
-    public Boolean addTTS(ThongTinSuaRequest thongTinSuaRequest) {
+    public ThongTinSuaResponse addTTS(ThongTinSuaRequest thongTinSuaRequest) {
         ThongTinSua thongTinSua=thongTinSuaRepo.save(mapToThongTinSua(thongTinSuaRequest));
-        return true;
+        return mapToTTSuaResponse(thongTinSua);
     }
 
     @Override

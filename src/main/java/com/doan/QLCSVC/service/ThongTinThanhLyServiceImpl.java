@@ -56,6 +56,7 @@ public class ThongTinThanhLyServiceImpl implements ThongTinThanhLyService{
                 .tienThu(thongTinThanhLy.getTienThu())
                 .user(mapperService.mapToUserResponse(thongTinThanhLy.getUser()))
                 .createdDate(thongTinThanhLy.getCreatedDate())
+                .coQuanTL(thongTinThanhLy.getCoQuanTL())
                 .build();
     }
 

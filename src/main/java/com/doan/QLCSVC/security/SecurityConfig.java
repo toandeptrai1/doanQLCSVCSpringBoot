@@ -64,12 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**")
                 .permitAll();
-        http.authorizeRequests().antMatchers("/QLCSVC/api/phong/**").permitAll();
-        http.authorizeRequests().antMatchers("/QLCSVC/api/trangthai/**").permitAll();
-        http.authorizeRequests().antMatchers("/QLCSVC/api/taisan/**").permitAll();
-        http.authorizeRequests().antMatchers("/QLCSVC/api/danhmucTS/**").permitAll();
-        http.authorizeRequests().antMatchers("/QLCSVC/api/ttdc/**").permitAll();
-        http.authorizeRequests().antMatchers("/QLCSVC/api/ttsua/**").permitAll();
+        http.authorizeRequests().antMatchers("/QLCSVC/api/thongbao/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
